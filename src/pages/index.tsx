@@ -1,4 +1,5 @@
 import * as React from "react"
+import { graphql } from "gatsby"
 import styled from "styled-components"
 import PurchaseButton from "../components/PurchaseButton"
 import CourseCard from "../components/cards/CourseCard"
@@ -6,21 +7,22 @@ import FlutterBuild from "../components/builds/FlutterBuild"
 import { useWindowSize } from "react-use"
 import GridSection from "../components/sections/GridSection"
 
-const IndexPage = () => {
+const IndexPage = ({data}) => {
   const { width } = useWindowSize()
+  const title = data.allContentfulCourse.edges[0].node.title
+  const description = data.allContentfulCourse.edges[0].node.description
+  const illustration = data.allContentfulCourse.edges[0].node.illustration.file.url
+  const sections = data.allContentfulCourse.edges[0].node.sections
 
   return (
     <Wrapper>
       <HeroWrapper>
-        <CourseCard />
+        <CourseCard illustration={illustration} />
         <TextWrapper>
           <Logo src="/images/logos/react-logo.svg" alt="icon" />
-          <Title>Build a web app with React Hooks</Title>
+          <Title>{title}</Title>
           <Caption>20 sections - 3 hours of videos</Caption>
-          <Description>
-            Learn how we built the new Design+Code site with React Hooks using
-            Gatsby, Netlify, and advanced CSS techniques with Styled Components.
-          </Description>
+          <Description>{description}</Description>
           <AuthorWrapper>
             <AvatarImage src="/images/avatars/Meng.png" alt="avatar" />
             <Caption>Taught by Meng To</Caption>
@@ -33,7 +35,7 @@ const IndexPage = () => {
         </TextWrapper>
       </HeroWrapper>
       <Divider />
-      <GridSection />
+      <GridSection sections={sections} />
       <FlutterWrapper width={width}>
         <FlutterBuild />
       </FlutterWrapper>
@@ -42,6 +44,29 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+export const query = graphql`
+  query IndexPageQuery {
+    allContentfulCourse {
+      edges {
+        node {
+          title
+          description
+          illustration {
+            file {
+              url
+            }
+          }
+          sections {
+            title
+            description
+            duration
+          }
+        }
+      }
+    }
+  }
+`
 
 const Wrapper = styled.div`
   background: linear-gradient(200.44deg, #4316db 13.57%, #9076e7 98.38%);

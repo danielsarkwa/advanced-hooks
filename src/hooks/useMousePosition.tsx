@@ -12,7 +12,7 @@ function useMousePosition(
   const [centerX, setCenterX] = useState(0)
   const [centerY, setCenterY] = useState(0)
 
-  // this remembers the values of your initial states and no re-run the function of your component serveral times
+  // this remembers the values of your initial states and no need to re-run the function of your component serveral times
   const bind = useMemo(
     () => ({
       onMouseMove: (event: React.MouseEvent) => {
