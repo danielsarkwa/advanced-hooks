@@ -1,22 +1,47 @@
-import React from "react";
+import React from "react"
 import styled from "styled-components"
+import { graphql } from "gatsby"
 
-function Section() {
+import Layout from "../components/layout"
+
+function Section(props) {
+  const { data } = props
+
+  const sectionData = data.contentfulSection
+
   return (
-    <Wrapper>
-      <HeroWrapper>
-        <Illustration src="/images/illustrations/illustration-1.png" />
-        <Title>Intro to React Hooks</Title>
-        <Description>
-          An overview of React Hooks and the frameworks you can use to build
-          your React application blazingly fast
-        </Description>
-      </HeroWrapper>
-    </Wrapper>
+    <Layout>
+      <Wrapper>
+        <HeroWrapper>
+          <Illustration
+            src={sectionData.illustration.file.url}
+            alt="illustration"
+          />
+          <Title>{sectionData.title}</Title>
+          <Description>{sectionData.description}</Description>
+        </HeroWrapper>
+      </Wrapper>
+    </Layout>
   )
 }
 
 export default Section
+
+export const sectionQuery = graphql`
+  query SectionQuery($slug: String!) {
+    contentfulSection(slug: { eq: $slug }) {
+      title
+      description
+      slug
+      duration
+      illustration {
+        file {
+          url
+        }
+      }
+    }
+  }
+`
 
 const Wrapper = styled.div`
   display: grid;

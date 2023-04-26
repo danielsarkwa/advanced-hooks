@@ -1,11 +1,12 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import styled from "styled-components"
-import PurchaseButton from "../components/PurchaseButton"
+import PurchaseButton from "../components/buttons/PurchaseButton"
 import CourseCard from "../components/cards/CourseCard"
 import FlutterBuild from "../components/builds/FlutterBuild"
 import { useWindowSize } from "react-use"
 import GridSection from "../components/sections/GridSection"
+import Layout from "../components/layout"
 
 const IndexPage = ({data}) => {
   const { width } = useWindowSize()
@@ -15,31 +16,33 @@ const IndexPage = ({data}) => {
   const sections = data.allContentfulCourse.edges[0].node.sections
 
   return (
-    <Wrapper>
-      <HeroWrapper>
-        <CourseCard illustration={illustration} />
-        <TextWrapper>
-          <Logo src="/images/logos/react-logo.svg" alt="icon" />
-          <Title>{title}</Title>
-          <Caption>20 sections - 3 hours of videos</Caption>
-          <Description>{description}</Description>
-          <AuthorWrapper>
-            <AvatarImage src="/images/avatars/Meng.png" alt="avatar" />
-            <Caption>Taught by Meng To</Caption>
-          </AuthorWrapper>
-          <PurchaseButton />
-          <SmallText>
-            Purchase includes access to 30 courses. Over 80 hours of content,
-            including 12 hours for SwiftUI, for iOS 13 and iOS 14.
-          </SmallText>
-        </TextWrapper>
-      </HeroWrapper>
-      <Divider />
-      <GridSection sections={sections} />
-      <FlutterWrapper width={width}>
-        <FlutterBuild />
-      </FlutterWrapper>
-    </Wrapper>
+    <Layout>
+      <Wrapper>
+        <HeroWrapper>
+          <CourseCard illustration={illustration} />
+          <TextWrapper>
+            <Logo src="/images/logos/react-logo.svg" alt="icon" />
+            <Title>{title}</Title>
+            <Caption>20 sections - 3 hours of videos</Caption>
+            <Description>{description}</Description>
+            <AuthorWrapper>
+              <AvatarImage src="/images/avatars/Meng.png" alt="avatar" />
+              <Caption>Taught by Meng To</Caption>
+            </AuthorWrapper>
+            <PurchaseButton />
+            <SmallText>
+              Purchase includes access to 30 courses. Over 80 hours of content,
+              including 12 hours for SwiftUI, for iOS 13 and iOS 14.
+            </SmallText>
+          </TextWrapper>
+        </HeroWrapper>
+        <Divider />
+        <GridSection sections={sections} />
+        <FlutterWrapper width={width}>
+          <FlutterBuild />
+        </FlutterWrapper>
+      </Wrapper>
+    </Layout>
   )
 }
 
@@ -61,6 +64,7 @@ export const query = graphql`
             title
             description
             duration
+            slug
           }
         }
       }
