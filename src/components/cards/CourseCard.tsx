@@ -41,4 +41,5 @@ const AnimationWrapper = styled.div`
 
 const Illustration = styled.img`
   width: 300px;
+  height: 225px;
 `

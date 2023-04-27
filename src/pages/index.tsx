@@ -7,6 +7,7 @@ import FlutterBuild from "../components/builds/FlutterBuild"
 import { useWindowSize } from "react-use"
 import GridSection from "../components/sections/GridSection"
 import Layout from "../components/layout"
+import Seo from "../components/seo"
 
 const IndexPage = ({data}) => {
   const { width } = useWindowSize()
@@ -17,6 +18,7 @@ const IndexPage = ({data}) => {
 
   return (
     <Layout>
+      <Seo title="Advanced React Hooks" />
       <Wrapper>
         <HeroWrapper>
           <CourseCard illustration={illustration} />

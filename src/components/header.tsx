@@ -35,9 +35,9 @@ export default function Header() {
 
   return (
     <Wrapper>
-      <Link to="/">
+      <MyLink to="/">
         <img src="/images/logos/logo.svg" alt="Logo" />
-      </Link>
+      </MyLink>
 
       <MenuWrapper count={menuData.length} ref={ref}>
         {menuData.map((item, index) =>
@@ -107,5 +107,12 @@ const HamburgerWrapper = styled.div`
 
   @media (max-width: 768px) {
     display: block;
+  }
+`
+
+const MyLink = styled(Link)`
+  img {
+    width: 44px;
+    height: 44px;
   }
 `

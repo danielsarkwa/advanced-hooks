@@ -42,6 +42,7 @@ function FlutterBuild() {
               translateY(${centerY / 2}px)
             `,
           }}
+          alt="man"
         />
         <img
           className="phone-left"
@@ -52,6 +53,7 @@ function FlutterBuild() {
               translateY(${centerY / 2.5}px)
             `,
           }}
+          alt="phone-left"
         />
         <img
           className="phone-right"
@@ -62,6 +64,7 @@ function FlutterBuild() {
               translateY(${centerY / 3}px)
             `,
           }}
+          alt="phone-right"
         />
         <div
           className="circle1"
@@ -128,6 +131,7 @@ function FlutterBuild() {
               translateY(${centerY / 5}px)
             `,
           }}
+          alt="background3"
         />
         <img
           className="background2"
@@ -138,6 +142,7 @@ function FlutterBuild() {
               translateY(${centerY / 6}px)
             `,
           }}
+          alt="background2"
         />
         <img
           className="background1"
@@ -148,6 +153,7 @@ function FlutterBuild() {
               translateY(${centerY / 7}px)
             `,
           }}
+          alt="background1"
         />
       </div>
     </Wrapper>

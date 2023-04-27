@@ -17,12 +17,16 @@ function Seo({ description, title, children }) {
             title
             description
             author
+            keywords
+            image
           }
         }
       }
     `
   )
 
+  const image = site.siteMetadata.image
+  const keywords = site.siteMetadata.keywords
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
@@ -32,10 +36,13 @@ function Seo({ description, title, children }) {
       <meta name="description" content={metaDescription} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={metaDescription} />
+      <meta property="og:keywords" content={keywords} />
+      <meta property="og:image" content={image} />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:creator" content={site.siteMetadata?.author || ``} />
       <meta name="twitter:title" content={title} />
+      <meta name="twitter:image" content={image} />
       <meta name="twitter:description" content={metaDescription} />
       {children}
     </>

@@ -3,14 +3,17 @@ import styled from "styled-components"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
+import Seo from "../components/seo"
+import SectionContent from "../components/sections/SectionContent"
 
 function Section(props) {
   const { data } = props
-
   const sectionData = data.contentfulSection
+  const markdown = sectionData.content.childMarkdownRemark
 
   return (
     <Layout>
+      <Seo title={sectionData.title} description={sectionData.description} />
       <Wrapper>
         <HeroWrapper>
           <Illustration
@@ -21,6 +24,7 @@ function Section(props) {
           <Description>{sectionData.description}</Description>
         </HeroWrapper>
       </Wrapper>
+      <SectionContent {...markdown} />
     </Layout>
   )
 }
@@ -37,6 +41,11 @@ export const sectionQuery = graphql`
       illustration {
         file {
           url
+        }
+      }
+      content {
+        childMarkdownRemark {
+          htmlAst
         }
       }
     }
